@@ -1,4 +1,4 @@
-System Health Reporter
+# System Health Reporter
 
 This idea is intended for use in laboratory automation, however it may be
 apliccable in other contexts.
@@ -28,11 +28,13 @@ consistently referenced in all processes on it according to its schema.
 
 
 Eg:
-Function     Health     Code
-Robot        100%       64
-Storage      100%       64
-Instrument1      50%        32
-Instrument2      0%         0     DEAD!!
+
+|Function   |Health|Code| |
+| --- | --- | ---|---|
+|Robot      |100%  |64  |    |
+|Storage    |100%  |64  |    |
+|Instrument1|50%   |32  |    |
+|Instrument2|0%    |0   |DEAD!!|
 
 would give a health code of 64643200
 
