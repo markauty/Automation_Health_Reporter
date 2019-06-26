@@ -1,32 +1,6 @@
 '''
-this is a proposed system to allow automated systems to fingerprint
-their health and report it. It also allows processes to fingerprint their
-requirements, and a success probablility can be reported.
-
-Health scores are a string of hex characters, 0= broken, 1=10% ... A=100%
-Requirements are similarly scored, 0= not needed, 1-A gives minimum
-acceptable pereformance level. Eg if a machine function has redundancy, or
-we could accept a failure rate, then this would be scored at less than 'A'.
-
-Converting the values to percentages and multiplying would give a 'probability
-of success score.
-
-Each machine can have a uniquely defined set of parameters, so long as it is
-consistently referenced in all processes on it.
-
-Could even combine strings for machines to apply this method to a workflow.
-
-Eg:
-Function     Health     Code
-Robot        100%       A
-Heaters      100%       A
-Chiller      50%        5
-Scanner      0%         0     DEAD!!
-
-would give a health code of AA50
-
-A process requiring health of AA42  would not run as the scanner is not healthy enough.
-
+Same functionality as Health_Reporter100 but with health score resolution
+only in intervals of 10%
 '''
 
 def Generate_Success_Score(MachineString, ProcessString):

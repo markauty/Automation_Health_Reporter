@@ -1,33 +1,4 @@
-'''
-this is a proposed system to allow automated systems to fingerprint
-their health and report it. It also allows processes to fingerprint their
-requirements, and a success probablility can be reported.
 
-Health scores are a string of hex characters, 0= broken, 0A=10% ... 64=100%
-Requirements are similarly scored, 0= not needed, 1-64 gives minimum
-acceptable pereformance level. Eg if a machine function has redundancy, or
-we could accept a failure rate, then this would be scored at less than '64'.
-
-Converting the values to percentages and multiplying would give a guideline
-'probability of success score.
-
-Each machine can have a uniquely defined set of parameters, so long as it is
-consistently referenced in all processes on it according to its schema.
-
-Could even combine strings for machines to apply this method to a workflow.
-
-Eg:
-Function     Health     Code
-Robot        100%       64
-Heaters      100%       64
-Chiller      50%        32
-Scanner      0%         0     DEAD!!
-
-would give a health code of 64643200
-
-A process requiring health of 64000016  would not run as the scanner is not healthy enough.
-
-'''
 
 def Generate_Success_Score(MachineString, ProcessString):
     rollingProbability=1
@@ -86,16 +57,3 @@ def Average_Machine_Health(Machine_String):
         Function=int(Machine_String[x:x+2],16)
         Function_Sum=Function_Sum+(int(Function)/100)
     return Function_Sum / (len(Machine_String)/2)
-
-    
-Machine_String_Schema=['Robot','Scanner','Instrument1','Instrument2']    
-MachineString1='00636363'
-
-ProcessString1='00646000'
-ProcessString2='00606030'
-
-print('Machine 1: ' + str(Decode_Status_String(Machine_String_Schema,MachineString1)))
-print('Machine1 Health: ' + str(Average_Machine_Health(MachineString1)))
-print('Changing Process String1: ' + Set_Status_String_Parameter(Machine_String_Schema, ProcessString1,'Robot',100))
-print('Process1: '+ str(Generate_Success_Score(MachineString1, ProcessString1)))
-print('Process2: '+ str(Generate_Success_Score(MachineString1, ProcessString2)))
